@@ -1,3 +1,4 @@
+[![Build Status](https://app.travis-ci.com/J-pilon/Blog.svg?branch=main)](https://app.travis-ci.com/J-pilon/Blog)
 # README
 
 This README would normally document whatever steps are necessary to get the
