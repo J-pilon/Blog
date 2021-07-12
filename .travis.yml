@@ -8,7 +8,7 @@ rvm:
 bundler_args: --jobs=2
 script:
   - bundle exec rake db:setup
-  - NODE_ENV=test bundle exec rails webpacker:compile
+  - NODE_ENV=test bundle exec rake webpacker:compile
   - bundle exec rake spec
 cache: bundler
 services:
