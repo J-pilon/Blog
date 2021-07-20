@@ -8,7 +8,9 @@ cache:
 node_js:
   - 14
 rvm:
-- 2.7.2
+  - 2.7.2
+  - jruby-19mode
+  - rbx-2
 bundler_args: --jobs=2
 script:
   - npm install
