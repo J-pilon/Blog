@@ -1,20 +1,33 @@
-language: 
-  - ruby
-  - node_js
+language: ruby
+
+rvm:
+  - 2.7.2
+
+addons:
+  postgresql: "9.4"
+
+before_script:
+  - bundle exec rake db:create db:migrate RAILS_ENV=test
+
 cache:
   bundler: true
   directories:
     - node_modules
-node_js:
-  - 14
-rvm:
-  - 2.7.2
+  yarn: true
+
 bundler_args: --jobs=2
+
+install:
+  - bundle install
+  - nvm install node
+  - node -v
+  - npm i -g yarn
+  - yarn
+
 script:
-  - npm install
-  - npm audit fix
-  - bundle exec rake db:setup
-  - bundle exec rake spec
+  - bundle exec rails webpacker:compile
+  - bundle exec rails 
+  
 services:
   - postgresql
 addons:
