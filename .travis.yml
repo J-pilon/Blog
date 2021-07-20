@@ -1,23 +1,16 @@
-language: 
-  - ruby
-  - node_js
+language: ruby
 cache:
-  bundler: true
-  yarn: true
-  directories:
-    - node_modules
-node_js:
-  - 14
-rvm:
-  - 2.7.2
-bundler_args: --jobs=2
-script:
+  - bundler
   - yarn
-  - bundle exec rake db:setup
-  - NODE_ENV=test bundle exec rake webpacker:compile
-  - bundle exec rake spec
-cache: bundler
 services:
   - postgresql
-addons:
-  postgresql: "9.4"
+before_install:
+  - nvm install --lts
+before_script:
+  - bundle install --jobs=3 --retry=3
+  - yarn
+  - bundle exec rake db:create
+  - bundle exec rake db:schema:load
+script:
+  - bundle exec rake test
+  - bundle exec rake test:system
