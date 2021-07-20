@@ -13,7 +13,6 @@ bundler_args: --jobs=2
 script:
   - npm install
   - npm audit fix
-  - NODE_ENV=test bundle exec rails webpacker:compile
   - bundle exec rake db:setup
   - bundle exec rake spec
 services:
