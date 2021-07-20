@@ -9,14 +9,12 @@ node_js:
   - 14
 rvm:
   - 2.7.2
-  - jruby-19mode
-  - rbx-2
 bundler_args: --jobs=2
 script:
   - npm install
   - npm audit fix
-  - bundle exec rake db:setup
   - NODE_ENV=test bundle exec rake webpacker:compile
+  - bundle exec rake db:setup
   - bundle exec rake spec
 services:
   - postgresql
