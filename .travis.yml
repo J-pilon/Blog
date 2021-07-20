@@ -16,7 +16,6 @@ script:
   - bundle exec rake db:setup
   - NODE_ENV=test bundle exec rake webpacker:compile
   - bundle exec rake spec
-cache: bundler
 services:
   - postgresql
 addons:
