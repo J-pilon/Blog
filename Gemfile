@@ -30,7 +30,7 @@ end
 
 group :test do
   gem 'simplecov', require: false
-  gem 'codecov', :require => false
+  gem 'codecov', require: false
 
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
