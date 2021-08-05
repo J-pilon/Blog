@@ -5,15 +5,22 @@ class PostsController < ApplicationController
   end
 
   def create
-    if @post.invalid?
-      render "new"
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to post_path(@post.id)
     else
-      render "show"
+      render :new
     end
-
   end
 
   def show
-    @post
+    @post = Post.find(params[:id])
+  end
+
+  private
+
+  # checks to see that input values are permitted
+  def post_params
+    params.require(:post).permit(:title, :body)
   end
 end
