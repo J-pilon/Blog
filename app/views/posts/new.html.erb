@@ -1,15 +1,14 @@
 <h1>New Post</h1>
 
-  <% if @post.invalid? %>
-    <% @post.errors.each do |err| %>
-      <h2><%= err %></h2>
-    <% end %>
-  <% else %>
-      <%= nil %>
+  <% if @post.errors.any? %>
+    <ul>
+      <% @post.errors.each do |err| %>
+        <li><%= err.full_message %></li>
+      <% end %>
+    </ul>
   <% end %>
-</h2>
 
-<%= form_with model: @post do |form| %>
+<%= form_for @post do |form| %>
 <div>
   <%=form.label :title %><br>
   <%=form.text_field :title %>
