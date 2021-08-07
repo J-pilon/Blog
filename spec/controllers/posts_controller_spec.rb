@@ -21,5 +21,16 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  
+  describe "#show" do
+
+    before do
+      Post.create(title: "test-title", body: "test-body")
+    end
+
+    it "finds the post with the currect id" do
+      get :show
+      post = Post.find(1)
+      expect(post.id).to eq(1)
+    end
+  end
 end
