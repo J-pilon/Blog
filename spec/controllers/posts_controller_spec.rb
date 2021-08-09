@@ -9,28 +9,31 @@ RSpec.describe PostsController, type: :controller do
 
     it "returns 200 response" do 
       get :new
-      expect(response).to have_http_status "200"
+      expect(response).to have_http_status("200")
     end
   end
 
   describe "#create" do
     it "redirects to #show if attributes are successful" do
-      @post = Post.new(title: "test-title", body: "test-body")
-      post :create
-      expect(response).to redirect_to post_path
+    # ruby keyword arguments - search
+      post :create, params: {post: {title: "test-title", body: "test-body"}}
+      @post = Post.first
+      expect(response).to redirect_to post_path(@post.id)
     end
   end
 
   describe "#show" do
-
-    before do
-      Post.create(title: "test-title", body: "test-body")
-    end
+  # lazy loading vs ego loading
+    let(:post) {Post.create(title: "test-title", body: "test-body")}
 
     it "finds the post with the currect id" do
-      get :show
-      post = Post.find(1)
-      expect(post.id).to eq(1)
+      get :show, params: {id: post.id}
+      expect(response).to be_successful
+    end
+
+    it "returns a 200 status code" do
+      get :show, params: {id: post.id}
+      expect(response).to have_http_status("200")
     end
   end
 end
