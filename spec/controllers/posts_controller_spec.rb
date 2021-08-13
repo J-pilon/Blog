@@ -54,7 +54,13 @@ RSpec.describe PostsController, type: :controller do
       @post = Post.create(title: "title one", body: "this is the body of the first post")
       expect {
         delete :destroy, params: { id: @post.id }
-    }.to change(Post, :count).by(-1)
+      }.to change(Post, :count).by(-1)
+    end
+
+    it "redirects the user to index page" do
+      @post = Post.create(title: "title one", body: "this is the body of the first post")
+      delete :destroy, params: { id: @post.id }
+      expect(response).to have_http_status("302")
     end
   end
 end
