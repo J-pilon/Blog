@@ -48,4 +48,13 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to have_http_status("200")
     end
   end
+
+  describe "#destroy" do
+    it "reduces the count of posts by one" do
+      @post = Post.create(title: "title one", body: "this is the body of the first post")
+      expect {
+        delete :destroy, params: { id: @post.id }
+    }.to change(Post, :count).by(-1)
+    end
+  end
 end
