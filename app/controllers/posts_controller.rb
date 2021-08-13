@@ -21,6 +21,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+  end
+
   private
 
   # checks to see that input values are permitted
