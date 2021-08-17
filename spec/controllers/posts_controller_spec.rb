@@ -50,13 +50,15 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "#edit" do 
+    let(:post) {Post.create(title: "test-title", body: "test-body")}
+
     it "respondes successfully" do
-      get :index
+      get :edit, params: { id: post.id}
       expect(response).to be_successful
     end
 
     it "returns a 200 status code" do
-      get :index
+      get :edit, params: { id: post.id}
       expect(response).to have_http_status("200")
     end
   end
