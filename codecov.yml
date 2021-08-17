@@ -1,5 +1,9 @@
 codecov:
   require_ci_to_pass: yes
+  toke: "7d805bbe-dd48-42f5-b181-b6178ffb9808"
+  ci:
+    - "travis.org"
+  strict_yaml_branch: "yaml-config"
 
 coverage:
   precision: 2
