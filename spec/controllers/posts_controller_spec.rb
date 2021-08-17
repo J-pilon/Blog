@@ -49,6 +49,18 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+  describe "#edit" do 
+    it "respondes successfully" do
+      get :index
+      expect(response).to be_successful
+    end
+
+    it "returns a 200 status code" do
+      get :index
+      expect(response).to have_http_status("200")
+    end
+  end
+
   describe "#destroy" do
     it "reduces the count of posts by one" do
       @post = Post.create(title: "title one", body: "this is the body of the first post")
